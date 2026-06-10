@@ -1,4 +1,5 @@
 # Copyright (C) 2026 The LineageOS Project
+#           (C) 2026 The BloomOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,5 +18,22 @@
 LOCAL_PATH := $(call my-dir)
 
 ifeq ($(TARGET_DEVICE),OP4C7D)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := vendor_symlink_stamp
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR)
+LOCAL_SRC_FILES := README.md
+
+LOCAL_POST_INSTALL_CMD := \
+    ln -sf /mnt/vendor/persist $(TARGET_OUT_VENDOR)/persist; \
+    ln -sf /mnt/vendor/nvcfg $(TARGET_OUT_VENDOR)/nvcfg; \
+    ln -sf /mnt/vendor/nvdata $(TARGET_OUT_VENDOR)/nvdata; \
+    ln -sf /mnt/vendor/protect_f $(TARGET_OUT_VENDOR)/protect_f; \
+    ln -sf /mnt/vendor/protect_s $(TARGET_OUT_VENDOR)/protect_s; \
+    ln -sf /mnt/vendor/opporeserve2 $(TARGET_OUT_VENDOR)/opporeserve2
+
+include $(BUILD_PREBUILT)
 
 endif
