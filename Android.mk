@@ -17,6 +17,9 @@
 
 LOCAL_PATH := $(call my-dir)
 
+
+include $(call all-makefiles-under,$(LOCAL_PATH))
+
 ifeq ($(TARGET_DEVICE),OP4C7D)
 
 endif
